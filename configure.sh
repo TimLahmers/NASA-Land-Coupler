@@ -42,6 +42,19 @@ settings () {
 find_system () {
     local sysname=`hostname`
     sysname="${sysname//[[:digit:]]/}"
+    delimiter=.
+    s=$sysname$delimiter
+    array=();
+    i=0
+    while [[ $s ]]; do
+        array+=( "${s%%"$delimiter"*}" );
+        s=${s#*"$delimiter"};
+        i=$((i+1))
+    done;
+    if [ $i -gt 1 ]
+    then
+        sysname="${array[1]}"
+    fi
     echo "$sysname"
 }
 
