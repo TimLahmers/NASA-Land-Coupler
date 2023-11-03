@@ -83,14 +83,16 @@ elseif (ECCODES_FOUND) # ECCODES
   target_link_libraries(NLC.exe PUBLIC ECCODES::ECCODES)
   target_link_libraries(NLC.exe PUBLIC ECCODES::ECCODES_F90)
 endif ()
-if (HDF4_FOUND) # HDF4
-  target_link_libraries(NLC.exe PUBLIC HDF4::MFHDF)
-  target_link_libraries(NLC.exe PUBLIC HDF4::DF)
-endif ()
+#if (HDF4_FOUND) # HDF4
+  #target_link_libraries(NLC.exe PUBLIC HDF4::MFHDF)
+  #target_link_libraries(NLC.exe PUBLIC HDF4::DF)
+#endif ()
 if (HDF5_FOUND) # HDF5
   target_link_libraries(NLC.exe PUBLIC HDF5::HDF5)
   target_link_libraries(NLC.exe PUBLIC HDF5::HDF5_FORTRAN)
   target_link_libraries(NLC.exe PUBLIC HDF5::HDF5_HL)
+  #target_link_libraries(NLC.exe PUBLIC HDF5::MFHDF)
+  #target_link_libraries(NLC.exe PUBLIC HDF5::DF)
 endif ()
 if (HDFEOS_FOUND) # HDFEOS
   target_link_libraries(NLC.exe PUBLIC HDFEOS::HDFEOS)
@@ -100,4 +102,9 @@ if (NETCDF_FOUND) # NETCDF
   target_link_libraries(NLC.exe PUBLIC NETCDF::NETCDF)
   target_link_libraries(NLC.exe PUBLIC NETCDF::NETCDFF)
 endif ()
+
+find_package(ZLIB)
+target_link_libraries(NLC.exe PUBLIC ZLIB::ZLIB)
+
+
 

@@ -103,15 +103,15 @@ else()
     message(WARNING "LIS_HDF4 not defined")
   endif ()
 endif()
-add_library(HDF4::DF UNKNOWN IMPORTED)
-find_library(DF_LIB NAMES df PATHS ${LIS_HDF4} PATH_SUFFIXES lib lib64)
-set_target_properties(HDF4::DF PROPERTIES
-  IMPORTED_LOCATION "${DF_LIB}"
-  INTERFACE_LINK_LIBRARIES "-ljpeg -lz")
-add_library(HDF4::MFHDF UNKNOWN IMPORTED)
-find_library(MFHDF_LIB NAMES mfhdf PATHS ${LIS_HDF4} PATH_SUFFIXES lib lib64)
-set_target_properties(HDF4::MFHDF PROPERTIES
-  IMPORTED_LOCATION "${MFHDF_LIB}")
+#add_library(HDF4::DF UNKNOWN IMPORTED)
+#find_library(DF_LIB NAMES df PATHS ${LIS_HDF4} PATH_SUFFIXES lib lib64)
+#set_target_properties(HDF4::DF PROPERTIES
+#  IMPORTED_LOCATION "${DF_LIB}"
+#  INTERFACE_LINK_LIBRARIES "-ljpeg -lz")
+#add_library(HDF4::MFHDF UNKNOWN IMPORTED)
+#find_library(MFHDF_LIB NAMES mfhdf PATHS ${LIS_HDF4} PATH_SUFFIXES lib lib64)
+#set_target_properties(HDF4::MFHDF PROPERTIES
+#  IMPORTED_LOCATION "${MFHDF_LIB}")
 # HDF5
 if (EXISTS ${LIS_HDF5})
   set(HDF5_FOUND TRUE CACHE BOOL "HDF5 directory file found" FORCE)
@@ -133,6 +133,15 @@ add_library(HDF5::HDF5_HL UNKNOWN IMPORTED)
 find_library(HDF5_HL_LIB NAMES hdf5_hl PATHS ${LIS_HDF5} PATH_SUFFIXES lib lib64)
 set_target_properties(HDF5::HDF5_HL PROPERTIES
   IMPORTED_LOCATION "${HDF5_HL_LIB}")
+add_library(HDF5::DF UNKNOWN IMPORTED)
+find_library(DF_LIB NAMES df PATHS ${LIS_HDF5} PATH_SUFFIXES lib lib64)
+set_target_properties(HDF5::DF PROPERTIES
+  IMPORTED_LOCATION "${DF_LIB}"
+  INTERFACE_LINK_LIBRARIES "-ljpeg -lz")
+add_library(HDF5::MFHDF UNKNOWN IMPORTED)
+find_library(MFHDF_LIB NAMES mfhdf PATHS ${LIS_HDF5} PATH_SUFFIXES lib lib64)
+set_target_properties(HDF5::MFHDF PROPERTIES
+  IMPORTED_LOCATION "${MFHDF_LIB}")
 # HDFEOS
 if (EXISTS ${LIS_HDFEOS})
   set(HDFEOS_FOUND TRUE CACHE BOOL "HDFEOS directory file found" FORCE)

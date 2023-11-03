@@ -101,7 +101,7 @@ if [ -z "${MYCOMPILER}" ] ; then
     MYCOMPILER="intel.19.1.3"
   elif [ "${SYSTEM}" = "cheyenne" ]; then
     MYCOMPILER="intel.19.1.1"
-  elif [ "${SYSTEM}" = "crane" ]; then
+  elif [ "${SYSTEM}" = "swan" ]; then
     MYCOMPILER="intel.19.0.8"
   else
     printf "ERROR: no default compiler for ${SYSTEM}\n"
