@@ -137,6 +137,8 @@ fi
 if [ -z "${MYCOMPILER}" ] ; then
   if [ "${SYSTEM}" = "discover" ]; then
     MYCOMPILER="intel.19.1.3"
+  elif [ "${SYSTEM}" = "discover15" ]; then
+    MYCOMPILER="intel.21.4.0"
   elif [ "${SYSTEM}" = "cheyenne" ]; then
     MYCOMPILER="intel.19.1.1"
   elif [ "${SYSTEM}" = "swan" ]; then
