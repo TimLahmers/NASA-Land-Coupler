@@ -103,6 +103,7 @@ export LVT_FORTRANGIS="${def_lvt_fortrangis}"
 export NETCDF="${def_nlc_netcdf}"
 export WRF_HYDRO="1"
 export SPATIAL_SOIL="1"
+export HYDRO_D="1"
 
 # NASA Land Coupler environment variables
 export CMAKE_C_COMPILER="mpicc"
