@@ -85,7 +85,7 @@ fi
 # automatically determine compiler
 if [ -z "${MYCOMPILER}" ] ; then
   if [ "${SYSTEM}" = "discover" ]; then
-    MYCOMPILER="intel.19.1.3"
+    MYCOMPILER="intel.23.2.1"
   elif [ "${SYSTEM}" = "cheyenne" ]; then
     MYCOMPILER="intel.19.1.1"
   else
