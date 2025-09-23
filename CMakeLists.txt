@@ -46,7 +46,7 @@ if (COMPONENT_LIST)
 else()
   set(ENABLE_LIS ON)
   set(ENABLE_WRFHYDRO ON)
-  set(ENABLE_PARFLOW ON)
+  set(ENABLE_PARFLOW OFF)
 endif()
 
 # link LIS

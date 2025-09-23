@@ -1,0 +1,190 @@
+#%Module1.0###################################################################
+
+proc ModulesHelp { } {
+    puts stderr "This is for use on HCC' swan system."
+    puts stderr ""
+    puts stderr "\tThe following env variables are set:"
+    puts stderr "\t\tDEV_ENV"
+    puts stderr "\t\tLIS_ARCH"
+    puts stderr "\t\tLIS_SPMD"
+    puts stderr "\t\tLIS_FC"
+    puts stderr "\t\tLIS_CC"
+    puts stderr "\t\tLIS_RPC"
+    puts stderr "\t\tLIS_OPENJPEG"
+    puts stderr "\t\tLIS_ECCODES"
+    puts stderr "\t\tLIS_NETCDF"
+    puts stderr "\t\tLIS_HDF4"
+    puts stderr "\t\tLIS_HDFEOS"
+    puts stderr "\t\tLIS_HDF5"
+    puts stderr "\t\tLIS_MODESMF"
+    puts stderr "\t\tLIS_LIBESMF"
+    puts stderr "\t\tLIS_MINPACK"
+    puts stderr "\t\tLIS_CRTM"
+    puts stderr "\t\tLIS_CRTM_PROF"
+    puts stderr "\t\tLIS_CMEM"
+    puts stderr "\t\tLIS_LAPACK"
+    puts stderr "\t\tLIS_PETSC"
+    puts stderr "\t\tLDT_ARCH"
+    puts stderr "\t\tLDT_FC"
+    puts stderr "\t\tLDT_CC"
+    puts stderr "\t\tLDT_RPC"
+    puts stderr "\t\tLDT_OPENJPEG"
+    puts stderr "\t\tLDT_ECCODES"
+    puts stderr "\t\tLDT_NETCDF"
+    puts stderr "\t\tLDT_HDF4"
+    puts stderr "\t\tLDT_HDFEOS"
+    puts stderr "\t\tLDT_HDF5"
+    puts stderr "\t\tLDT_MODESMF"
+    puts stderr "\t\tLDT_LIBESMF"
+    puts stderr "\t\tLDT_GDAL"
+    puts stderr "\t\tLDT_FORTRANGIS"
+    puts stderr "\t\tLDT_LIBGEOTIFF"
+    puts stderr "\t\tLVT_ARCH"
+    puts stderr "\t\tLVT_FC"
+    puts stderr "\t\tLVT_CC"
+    puts stderr "\t\tLVT_RPC"
+    puts stderr "\t\tLVT_OPENJPEG"
+    puts stderr "\t\tLVT_ECCODES"
+    puts stderr "\t\tLVT_NETCDF"
+    puts stderr "\t\tLVT_HDF4"
+    puts stderr "\t\tLVT_HDFEOS"
+    puts stderr "\t\tLVT_HDF5"
+    puts stderr "\t\tLVT_MODESMF"
+    puts stderr "\t\tLVT_LIBESMF"
+    puts stderr "\t\tLVT_GDAL"
+    puts stderr "\t\tLVT_FORTRANGIS"
+    puts stderr ""
+    puts stderr "\tThe following modules are loaded:"
+    puts stderr "\t\tcompiler/intel/19"
+    puts stderr "\t\topenmpi/4.0"
+    puts stderr "\t\tLIS/7.3"
+    puts stderr "\t\tesmf/8.8.1"
+    puts stderr "\t\tcmake/3.20"
+    puts stderr "\t\tpython/3.9"
+    puts stderr "\t\tgit/2.29"
+    puts stderr ""
+}
+
+conflict comp mpi
+
+module-whatis	"loads the [module-info name] environment"
+
+set modname     [module-info name]
+set modmode     [module-info mode]
+
+module purge
+module load compiler/intel/19 openmpi/4.0 LIS/7.3 esmf/8.8
+module load cmake/3.20
+module load python/3.9
+module load git/2.29
+
+set def_nlc_dir $env(NLC_DIR)
+
+set   def_lis_rpc         /usr/lib64/libtirpc.so
+set   def_lis_hdf5        /util/opt/hdf5/1.12/intel/19
+set   def_lis_netcdf      /util/opt/netcdf/4.7/intel/19
+set   def_lis_openjpeg    /util/opt/openjpeg/2.4/intel/19
+set   def_lis_eccodes     /util/opt/eccodes/2.24/intel/19.0
+set   def_lis_hdf4        /util/opt/hdf4/4.2.15/intel/19
+set   def_lis_hdfeos      /util/opt/hdf-eos2/2.20/intel/19
+set   def_lis_modesmf     /util/opt/esmf/8.8/intel/19/mod/modO/Linux.intel.64.openmpi.default
+set   def_lis_libesmf     /util/opt/esmf/8.8/intel/19/lib/libO/Linux.intel.64.openmpi.default
+set   def_lvt_proj        /util/opt
+set   def_ldt_libgeotiff  /util/opt/libgeotiff/1.6/intel/19/lib
+set   def_lvt_gdal        /util/opt/gdal/3.4/intel/19
+set   def_lvt_fortrangis  /util/opt/fortrangis/2.5/intel/19/lib
+set   def_lis_petsc       /util/opt
+set   def_lis_minpack     /util/opt/minpack/19961126/intel/19/lib
+set   def_lis_crtm        /util/opt/crtm/2.0/intel/19
+set   def_lis_crtm_prof   /util/opt
+set   def_lis_cmem        /util/opt
+set   def_lis_lapack      /util/opt/lapack/3.9/intel/19/lib
+set   def_wrfhydro_netcdf /util/opt/netcdf/4.7/intel/19
+set   def_parflow_hdf5    /util/opt/hdf5/1.12/intel/19
+set   def_parflow_hypre   /util/opt
+set   def_parflow_silo    /util/opt
+
+setenv   DEV_ENV         LISF_7_INTEL_19_0_8
+setenv   LIS_ARCH        linux_ifc
+setenv   LIS_SPMD        parallel
+setenv   LIS_FC          mpif90
+setenv   LIS_CC          mpicc
+setenv   LIS_RPC         $def_lis_rpc
+setenv   LIS_OPENJPEG    $def_lis_openjpeg
+setenv   LIS_ECCODES     $def_lis_eccodes
+setenv   LIS_NETCDF      $def_lis_netcdf
+setenv   LIS_HDF4        $def_lis_hdf4
+setenv   LIS_HDFEOS      $def_lis_hdfeos
+setenv   LIS_HDF5        $def_lis_hdf5
+setenv   LIS_MODESMF     $def_lis_modesmf
+setenv   LIS_LIBESMF     $def_lis_libesmf
+setenv   LIS_MINPACK     $def_lis_minpack
+setenv   LIS_CRTM        $def_lis_crtm
+setenv   LIS_CRTM_PROF   $def_lis_crtm_prof
+setenv   LIS_CMEM        $def_lis_cmem
+setenv   LIS_LAPACK      $def_lis_lapack
+setenv   LIS_PETSC       $def_lis_petsc
+
+setenv   LDT_ARCH        linux_ifc
+setenv   LDT_FC          mpiifort
+setenv   LDT_CC          mpicc
+setenv   LDT_RPC         $def_lis_rpc
+setenv   LDT_OPENJPEG    $def_lis_openjpeg
+setenv   LDT_ECCODES     $def_lis_eccodes
+setenv   LDT_NETCDF      $def_lis_netcdf
+setenv   LDT_HDF4        $def_lis_hdf4
+setenv   LDT_HDFEOS      $def_lis_hdfeos
+setenv   LDT_HDF5        $def_lis_hdf5
+setenv   LDT_MODESMF     $def_lis_modesmf
+setenv   LDT_LIBESMF     $def_lis_libesmf
+setenv   LDT_GDAL        $def_lvt_gdal
+setenv   LDT_FORTRANGIS  $def_lvt_fortrangis
+setenv   LDT_LIBGEOTIFF  $def_ldt_libgeotiff
+
+setenv   LVT_ARCH        linux_ifc
+setenv   LVT_FC          mpiifort
+setenv   LVT_CC          mpicc
+setenv   LVT_RPC         $def_lis_rpc
+setenv   LVT_OPENJPEG    $def_lis_openjpeg
+setenv   LVT_ECCODES     $def_lis_eccodes
+setenv   LVT_NETCDF      $def_lis_netcdf
+setenv   LVT_HDF4        $def_lis_hdf4
+setenv   LVT_HDFEOS      $def_lis_hdfeos
+setenv   LVT_HDF5        $def_lis_hdf5
+setenv   LVT_MODESMF     $def_lis_modesmf
+setenv   LVT_LIBESMF     $def_lis_libesmf
+setenv   LVT_GDAL        $def_lvt_gdal
+setenv   LVT_FORTRANGIS  $def_lvt_fortrangis
+
+setenv   NETCDF              $def_wrfhydro_netcdf
+setenv   WRF_HYDRO           1
+setenv   WRF_HYDRO_NUOPC     1
+setenv   WRF_HYDRO_NUOPC_LSM 0
+setenv   WRF_HYDRO_NUDGING   0
+setenv   HYDRO_D             0
+
+setenv   PF_SRC             "$def_nlc_dir/src/parflow"
+setenv   PARFLOW_DIR        "$def_nlc_dir/install/PARFLOW"
+setenv   PARFLOW_HYPRE_DIR  $def_parflow_hypre
+setenv   PARFLOW_HDF5_DIR   $def_parflow_hdf5
+setenv   PARFLOW_SILO_DIR   $def_parflow_silo
+setenv   PARFLOW_AMPS_LAYER mpi1
+setenv   PARFLOW_HAVE_CLM   OFF
+setenv   PARFLOW            1
+
+setenv CMAKE_C_COMPILER       mpicc
+setenv CMAKE_CXX_COMPILER     mpicxx
+setenv CMAKE_Fortran_COMPILER mpif90
+setenv ESMFMKFILE             "$def_lis_libesmf/esmf.mk"
+
+prepend-path   LD_LIBRARY_PATH   "$def_lis_openjpeg/lib"
+prepend-path   LD_LIBRARY_PATH   "$def_ldt_libgeotiff/lib"
+prepend-path   LD_LIBRARY_PATH   "$def_lvt_proj/lib"
+prepend-path   LD_LIBRARY_PATH   "$def_lvt_gdal/lib"
+prepend-path   LD_LIBRARY_PATH   "$def_lis_hdf4/lib"
+prepend-path   LD_LIBRARY_PATH   "$def_lis_hdf5/lib"
+prepend-path   LD_LIBRARY_PATH   "$def_lis_libesmf"
+prepend-path   LD_LIBRARY_PATH   "$def_lis_netcdf/lib"
+prepend-path   LD_LIBRARY_PATH   "$def_lis_eccodes/lib"
+prepend-path   LD_LIBRARY_PATH   "$def_lis_petsc/lib"
+prepend-path   PATH   "$def_lis_netc/df/bin:$def_lis_eccodes/bin"

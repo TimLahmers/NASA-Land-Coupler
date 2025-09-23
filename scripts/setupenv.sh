@@ -38,6 +38,15 @@ auto_environment () {
       DATA_ROOT="${DATA_ROOT:-/discover/nobackup/projects/nu-wrf/lishydro/data}"
       module use "${2}/discover-15.4/"
       module load "intel-2023.2.1";;
+    "swan")
+      source /etc/profile.d/modules.sh
+      COMPILER="${COMPILER:-intel}"
+      COMPILER_VERS="${COMPILER_VERS:-intel-2019.0.8}"
+      BATCH_SYS="${BATCH_SYS:-sbatch}"
+      CPPERNODE="${CPPERNODE:-28}"
+      DATA_ROOT="${DATA_ROOT:-/discover/nobackup/projects/nu-wrf/lishydro/data}"
+      module use "${2}/discover-15.4/"
+      module load "intel-2023.2.1";;
     *) printf "ERROR: no modulefile file for ${1}\n"; exit 1 ;;
   esac
 }
