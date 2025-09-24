@@ -6,7 +6,8 @@ find_system () {
   source /etc/os-release
   case ${sysname} in
     discover*) echo "$sysname-$VERSION_ID" ;;
-    *) echo "$sysname" ;;
+    *swan*) echo "swan" ;;
+    *) echo "$sysname" ;;    
   esac
 }
 
@@ -45,8 +46,8 @@ auto_environment () {
       BATCH_SYS="${BATCH_SYS:-sbatch}"
       CPPERNODE="${CPPERNODE:-28}"
       DATA_ROOT="${DATA_ROOT:-/discover/nobackup/projects/nu-wrf/lishydro/data}"
-      module use "${2}/discover-15.4/"
-      module load "intel-2023.2.1";;
+      module use "${2}/swan/"
+      module load "intel-2019.0.8";;
     *) printf "ERROR: no modulefile file for ${1}\n"; exit 1 ;;
   esac
 }
