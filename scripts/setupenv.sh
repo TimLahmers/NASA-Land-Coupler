@@ -40,7 +40,6 @@ auto_environment () {
       module use "${2}/discover-15.4/"
       module load "intel-2023.2.1";;
     "swan")
-      source /etc/profile.d/modules.sh
       COMPILER="${COMPILER:-intel}"
       COMPILER_VERS="${COMPILER_VERS:-intel-2019.0.8}"
       BATCH_SYS="${BATCH_SYS:-sbatch}"
