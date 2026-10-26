@@ -294,6 +294,33 @@ if [[ $RUNCONFIG == *"gwr"* ]]; then
   fi
 fi
 
+# MPAS Setup
+if [[ $RUNCONFIG == *"atm"* ]]; then
+  DATA_ATM=$DATA_ROOT/MPAS/$USECASE
+  if [ -d $DATA_ATM ]; then
+    # namelist
+    cp $DATA_ATM/namelist.atmosphere $RUNDIR
+    # Initial and Boundary Conditions
+    cp $DATA_ATM/lbc*.nc $RUNDIR
+    cp $DATA_ATM/*init.nc $RUNDIR
+    cp $DATA_ATM/*graph.info* $RUNDIR
+    # Data Streams and Variables
+    cp $DATA_ATM/stream* $RUNDIR
+    # Data .TBL Files
+    cp $DATA_ATM/*TBL $RUNDIR
+    # Parameterization Files
+    cp $DATA_ATM/CAM* $RUNDIR
+    cp $DATA_ATM/CCN* $RUNDIR
+    cp $DATA_ATM/RRTMG* $RUNDIR
+    # Misc. MPAS Files
+    cp $DATA_ATM/COMPATIBILITY $RUNDIR
+    cp $DATA_ATM/VERSION $RUNDIR
+  else
+    echo "ERROR: DATA_ATM directory not found [$DATA_ATM]"
+    exit 1
+  fi
+fi
+
 # Copy executable to RUNDIR
 cp $NLC_EXE $RUNDIR/.
 cp $NLC_FD  $RUNDIR/.
