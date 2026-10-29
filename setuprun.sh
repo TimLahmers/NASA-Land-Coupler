@@ -301,17 +301,16 @@ if [[ $RUNCONFIG == *"atm"* ]]; then
     # namelist
     cp $DATA_ATM/namelist.atmosphere $RUNDIR
     # Initial and Boundary Conditions
-    cp $DATA_ATM/lbc*.nc $RUNDIR
-    cp $DATA_ATM/*init.nc $RUNDIR
-    cp $DATA_ATM/*graph.info* $RUNDIR
+    ln -s $DATA_ATM/lbc*.nc $RUNDIR
+    ln -s $DATA_ATM/*init.nc $RUNDIR
+    ln -s $DATA_ATM/*graph.info* $RUNDIR
     # Data Streams and Variables
     cp $DATA_ATM/stream* $RUNDIR
-    # Data .TBL Files
-    cp $DATA_ATM/*TBL $RUNDIR
-    # Parameterization Files
-    cp $DATA_ATM/CAM* $RUNDIR
-    cp $DATA_ATM/CCN* $RUNDIR
-    cp $DATA_ATM/RRTMG* $RUNDIR
+    # Data .TBL and Parameterization Files
+    ln -s $DATA_ATM/*TBL $RUNDIR
+    ln -s $DATA_ATM/CAM* $RUNDIR
+    ln -s $DATA_ATM/CCN* $RUNDIR
+    ln -s $DATA_ATM/RRTMG* $RUNDIR
     # Misc. MPAS Files
     cp $DATA_ATM/COMPATIBILITY $RUNDIR
     cp $DATA_ATM/VERSION $RUNDIR
